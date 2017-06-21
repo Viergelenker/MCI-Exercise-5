@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MCI Aufgabe 5</title>
+    <link rel="stylesheet" href="app.css"/>
+</head>
+<body>
+
+<div id="screen" class="screen">
+
+    <button onclick="openProgramm(pr1)" id="programmIcon1" class="programmIcon">
+    </button>
+    <button onclick="openProgramm(pr2)" id="programmIcon2" class="programmIcon">
+
+    </button>
+    <button onclick="openProgramm(pr3)" id="programmIcon3" class="programmIcon">
+
+    </button>
+
+    <div id="programmWindow1" class="programmWindow">
+
+    </div>
+    <div id="programmWindow2" class="programmWindow">
+
+    </div>
+    <div id="programmWindow3" class="programmWindow">
+
+    </div>
+</div>
+
+<script>
+    var screenHeight = window.innerHeight;
+    var screenWidth = window.innerWidth;
+
+    var screen = document.getElementById("screen");
+    var pr1 = document.getElementById("programmWindow1");
+    var pr2 = document.getElementById("programmWindow2");
+    var pr3 = document.getElementById("programmWindow3");
+
+    var radius;
+
+    if (screenHeight - screenWidth > 0) {
+        radius = screenWidth;
+
+    } else {
+        radius = screenHeight;
+
+    }
+    screen.style.height = radius + "px";
+    screen.style.width = radius + "px";
+
+    function openProgramm(programmNumber) {
+        programmNumber.style.height = (radius-40) + "px";
+        programmNumber.style.width = (radius-40) + "px";
+        programmNumber.style.display = "block";
+    }
+
+</script>
+</body>
+</html>

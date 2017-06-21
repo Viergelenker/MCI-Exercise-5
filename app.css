@@ -1,0 +1,46 @@
+.screen {
+    border-radius: 50%;
+    background-color: gray;
+    position: absolute;
+    text-align: center;
+}
+
+.programmIcon {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    top: 40%;
+    margin: 0 20px;
+    border-style: none;
+}
+
+#programmIcon1 {
+    background-color: lightcyan;
+}
+
+#programmIcon2 {
+    background-color: lightgreen;
+}
+
+#programmIcon3 {
+    background-color: lightcoral;
+}
+
+.programmWindow {
+    display: none;
+    border-radius: 50%;
+    position: relative;
+}
+
+#programmWindow1 {
+    background-color: lightcyan;
+}
+
+#programmWindow2 {
+    background-color: lightgreen;
+}
+
+#programmWindow3 {
+    background-color: lightcoral;
+}
