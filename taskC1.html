@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Task C.1</title>
+    <style>
+        .card {
+            margin: auto;
+            margin-top: 100px;
+            padding: 10px;
+            box-shadow: 3px 3px 4px 0 gray;
+            border: solid black;
+            max-width: 60%;
+        }
+        .card-button {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <p>
+            <label for="distance">Distance: </label>
+            <input id="distance" name="distance" required type="text" placeholder="6">
+            <label for="distance"> km</label>
+            <button class="card-button" onclick="calcCO2()">Calculate</button>
+        </p>
+        <label for="mode">Transportation Mode: </label>
+        <select id="mode" name="mode">
+            <option value="124.5">Car</option>
+            <option value="83.0">Motorcycle</option>
+            <option value="66.8">Bus</option>
+            <option value="45.6">Train</option>
+        </select>
+        <p>CO2: <span id="result"></span></p>
+    </div>
+</div>
+
+<script>
+
+    function calcCO2() {
+        var distance = document.getElementById("distance").value;
+        var mode = document.getElementById("mode");
+        var modeValue = mode.options[mode.selectedIndex].value;
+
+        document.getElementById("result").innerHTML = (distance[0]*modeValue) + "g";
+    }
+</script>
+</body>
+</html>
