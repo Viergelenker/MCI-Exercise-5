@@ -37,14 +37,14 @@
         </div>
     </div>
     <div id="programmWindow3" class="programmWindow" onmousedown="dragstart(this)">
-        <div class="taskbar">
-            <button onclick="closeProgramm(pr3)" id="closeProgram3" class="programmFunction">
-                x</button>
-            <button onclick="minimizeProgram(pr3,d3)" id="minimizeProgram3" class="programmFunction">
-                -</button>
-            <button onclick="maximizeProgram(pr3)" id="maximizeProgram3" class="programmFunction">
-                ○</button>
-        </div>
+            <div class="taskbar">
+                <button onclick="closeProgramm(pr3)" id="closeProgram3" class="programmFunction">
+                    x</button>
+                <button onclick="minimizeProgram(pr3,d3)" id="minimizeProgram3" class="programmFunction">
+                    -</button>
+                <button onclick="maximizeProgram(pr3)" id="maximizeProgram3" class="programmFunction">
+                    ○</button>
+            </div>
     </div>
     <div class="dock" id="dock">
         <button onclick="reopenProgramm(pr1,d1)" id="reopenpr1" class="dockFunction">
@@ -89,10 +89,13 @@
         z_index++;
         programmNumber.style.height = (radius-40) + "px";
         programmNumber.style.width = (radius-40) + "px";
+        programmNumber.style.top = "20px";
+        programmNumber.style.left = "20px";
         programmNumber.style.display = "block";
         programmNumber.style.zIndex = z_index;
         dock.style.zIndex = z_index+1;
     }
+
 
     function closeProgramm(programmNumber) {
         programmNumber.style.display = "none";
@@ -106,6 +109,13 @@
     function reopenProgramm(programmNumber,dockNumber) {
         programmNumber.style.display = "inline";
         dockNumber.style.display = "none";
+    }
+
+    function maximizeProgram(programmNumber) {
+        programmNumber.style.height = (radius) + "px";
+        programmNumber.style.width = (radius) + "px";
+        programmNumber.style.top = "0px";
+        programmNumber.style.left = "0px";
     }
 
     var elem = document.getElementById('screen');
