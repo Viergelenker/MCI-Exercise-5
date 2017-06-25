@@ -7,25 +7,52 @@
 </head>
 <body>
 
-<div id="screen" class="screen" style="overflow: hidden">
+<div id="screen" class="screen">
 
     <button onclick="openProgramm(pr1)" id="programmIcon1" class="programmIcon">
     </button>
     <button onclick="openProgramm(pr2)" id="programmIcon2" class="programmIcon">
-
     </button>
     <button onclick="openProgramm(pr3)" id="programmIcon3" class="programmIcon">
-
     </button>
 
     <div id="programmWindow1" class="programmWindow" onmousedown="dragstart(this)">
-
+        <div class="taskbar">
+            <button onclick="closeProgramm(pr1)" id="closeProgram1" class="programmFunction">
+                x</button>
+            <button onclick="minimizeProgram(pr1,d1)" id="minimizeProgram1" class="programmFunction">
+                -</button>
+            <button onclick="maximizeProgram(pr1)" id="maximizeProgram1" class="programmFunction">
+                ○</button>
+        </div>
     </div>
     <div id="programmWindow2" class="programmWindow" onmousedown="dragstart(this)">
-
+        <div class="taskbar">
+            <button onclick="closeProgramm(pr2)" id="closeProgram2" class="programmFunction">
+                x</button>
+            <button onclick="minimizeProgram(pr2,d2)" id="minimizeProgram2" class="programmFunction">
+                -</button>
+            <button onclick="maximizeProgram(pr2)" id="maximizeProgram2" class="programmFunction">
+                ○</button>
+        </div>
     </div>
     <div id="programmWindow3" class="programmWindow" onmousedown="dragstart(this)">
-
+        <div class="taskbar">
+            <button onclick="closeProgramm(pr3)" id="closeProgram3" class="programmFunction">
+                x</button>
+            <button onclick="minimizeProgram(pr3,d3)" id="minimizeProgram3" class="programmFunction">
+                -</button>
+            <button onclick="maximizeProgram(pr3)" id="maximizeProgram3" class="programmFunction">
+                ○</button>
+        </div>
+    </div>
+    <div class="dock" id="dock">
+        <button onclick="reopenProgramm(pr1,d1)" id="reopenpr1" class="dockFunction">
+            </button>
+        <button onclick="reopenProgramm(pr2,d2)" id="reopenpr2" class="dockFunction">
+            </button>
+        <button onclick="reopenProgramm(pr3,d3)" id="reopenpr3" class="dockFunction">
+            </button>
     </div>
 </div>
 
@@ -37,6 +64,11 @@
     var pr1 = document.getElementById("programmWindow1");
     var pr2 = document.getElementById("programmWindow2");
     var pr3 = document.getElementById("programmWindow3");
+    var d1 = document.getElementById("reopenpr1")
+    var d2 = document.getElementById("reopenpr2")
+    var d3 = document.getElementById("reopenpr3")
+
+    var dock = document.getElementById("dock");
 
     var radius;
 
@@ -51,6 +83,7 @@
     }
     screen.style.height = radius + "px";
     screen.style.width = radius + "px";
+    dock.style.zIndex = z_index;
 
     function openProgramm(programmNumber) {
         z_index++;
@@ -58,6 +91,21 @@
         programmNumber.style.width = (radius-40) + "px";
         programmNumber.style.display = "block";
         programmNumber.style.zIndex = z_index;
+        dock.style.zIndex = z_index+1;
+    }
+
+    function closeProgramm(programmNumber) {
+        programmNumber.style.display = "none";
+    }
+
+    function minimizeProgram(programmNumber,dockNumber) {
+        programmNumber.style.display = "none";
+        dockNumber.style.display = "inline";
+    }
+
+    function reopenProgramm(programmNumber,dockNumber) {
+        programmNumber.style.display = "inline";
+        dockNumber.style.display = "none";
     }
 
     var elem = document.getElementById('screen');
@@ -75,6 +123,7 @@
         dragx = posx - dragobjekt.offsetLeft;
         dragy = posy - dragobjekt.offsetTop;
         dragobjekt.style.zIndex = z_index;
+        dock.style.zIndex = z_index+1;
     }
 
     function dragstop() {
