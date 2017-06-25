@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div id="screen" class="screen">
+<div id="screen" class="screen" style="overflow: hidden">
 
     <button onclick="openProgramm(pr1)" id="programmIcon1" class="programmIcon">
     </button>
@@ -18,13 +18,13 @@
 
     </button>
 
-    <div id="programmWindow1" class="programmWindow">
+    <div id="programmWindow1" class="programmWindow" onmousedown="dragstart(this)">
 
     </div>
-    <div id="programmWindow2" class="programmWindow">
+    <div id="programmWindow2" class="programmWindow" onmousedown="dragstart(this)">
 
     </div>
-    <div id="programmWindow3" class="programmWindow">
+    <div id="programmWindow3" class="programmWindow" onmousedown="dragstart(this)">
 
     </div>
 </div>
@@ -40,6 +40,8 @@
 
     var radius;
 
+    var z_index=6;
+
     if (screenHeight - screenWidth > 0) {
         radius = screenWidth;
 
@@ -51,10 +53,43 @@
     screen.style.width = radius + "px";
 
     function openProgramm(programmNumber) {
+        z_index++;
         programmNumber.style.height = (radius-40) + "px";
         programmNumber.style.width = (radius-40) + "px";
         programmNumber.style.display = "block";
+        programmNumber.style.zIndex = z_index;
     }
+
+    var elem = document.getElementById('screen');
+    elem.addEventListener('mousemove', drag);
+    elem.addEventListener('mouseup', dragstop);
+    var dragobjekt = null;
+    var dragx = 0;
+    var dragy = 0;
+    var posx = 0;
+    var posy = 0;
+
+    function dragstart(element) {
+        z_index++;
+        dragobjekt = element;
+        dragx = posx - dragobjekt.offsetLeft;
+        dragy = posy - dragobjekt.offsetTop;
+        dragobjekt.style.zIndex = z_index;
+    }
+
+    function dragstop() {
+        dragobjekt = null;
+    }
+
+    function drag(ereignis) {
+        posx = document.all ? window.event.clientX : ereignis.pageX;
+        posy = document.all ? window.event.clientY : ereignis.pageY;
+        if (dragobjekt != null) {
+            dragobjekt.style.left = (posx - dragx) + "px";
+            dragobjekt.style.top = (posy - dragy) + "px";
+        }
+    }
+
 
 </script>
 </body>
